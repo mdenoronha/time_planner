@@ -24,27 +24,39 @@ class TimePlannerTask extends StatelessWidget {
   /// Typically an [Text].
   final Widget? child;
 
+  /// The width and left positioning of the task
+  final int? column;
+
+  /// A custom cell width to use with the above
+  final num? width;
+
   /// Widget that show on time planner as the tasks
-  const TimePlannerTask({
-    Key? key,
-    required this.minutesDuration,
-    required this.dateTime,
-    this.daysDuration,
-    this.color,
-    this.onTap,
-    this.child,
-  }) : super(key: key);
+  const TimePlannerTask(
+      {Key? key,
+      required this.minutesDuration,
+      required this.dateTime,
+      this.daysDuration,
+      this.color,
+      this.onTap,
+      this.child,
+      this.column,
+      this.width})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
+    final cellWidth =
+        ((config.cellWidth!.toDouble() * (daysDuration ?? 1)) / (width ?? 1)) -
+            config.horizontalTaskPadding!;
     return Positioned(
-      top: ((config.cellHeight! * (dateTime.hour - config.startHour)) +
-              ((dateTime.minutes * config.cellHeight!) / 60))
+      top: (((config.cellHeight! * (dateTime.hour - config.startHour)) +
+                  ((dateTime.minutes * config.cellHeight!) / 60)) +
+              ((minutesDuration.toDouble() * config.cellHeight!) / 60))
           .toDouble(),
-      left: config.cellWidth! * dateTime.day.toDouble(),
+      left: (cellWidth * (column ?? 1)) *
+          (column == 0 ? dateTime.day.toDouble() : 1),
       child: SizedBox(
-        width: (config.cellWidth!.toDouble() * (daysDuration ?? 1)) -
-            config.horizontalTaskPadding!,
+        width: cellWidth,
         child: Padding(
           padding:
               EdgeInsets.only(left: config.horizontalTaskPadding!.toDouble()),
@@ -61,10 +73,9 @@ class TimePlannerTask extends StatelessWidget {
                     width: (config.cellWidth!.toDouble() * (daysDuration ?? 1)),
                     // (daysDuration! >= 1 ? daysDuration! : 1)),
                     decoration: BoxDecoration(
-                        borderRadius: config.borderRadius,
-                        color: color ?? Theme.of(context).primaryColor),
-                    child: Center(
-                      child: child,
+                        borderRadius: config.borderRadius, color: Colors.blue),
+                    child: Expanded(
+                      child: child ?? Container(),
                     ),
                   ),
                 ),

@@ -70,7 +70,7 @@ class _TimePlannerState extends State<TimePlanner> {
   /// create local style
   void _convertToLocalStyle() {
     style.backgroundColor = widget.style?.backgroundColor;
-    style.cellHeight = widget.style?.cellHeight ?? 80;
+    style.cellHeight = widget.style?.cellHeight ?? 150;
     style.cellWidth = widget.style?.cellWidth ?? 90;
     style.horizontalTaskPadding = widget.style?.horizontalTaskPadding ?? 0;
     style.borderRadius = widget.style?.borderRadius ??
@@ -176,6 +176,7 @@ class _TimePlannerState extends State<TimePlanner> {
                       physics: const NeverScrollableScrollPhysics(),
                       controller: timeVerticalController,
                       child: Row(
+                        crossAxisAlignment: CrossAxisAlignment.start,
                         mainAxisSize: MainAxisSize.min,
                         children: <Widget>[
                           Column(
@@ -200,8 +201,7 @@ class _TimePlannerState extends State<TimePlanner> {
                             ],
                           ),
                           Container(
-                            height:
-                                (config.totalHours * config.cellHeight!) + 80,
+                            height: (config.totalHours * config.cellHeight!),
                             width: 1,
                             color: style.dividerColor ??
                                 Theme.of(context).primaryColor,
@@ -246,7 +246,7 @@ class _TimePlannerState extends State<TimePlanner> {
                     mainAxisSize: MainAxisSize.min,
                     children: <Widget>[
                       SizedBox(
-                        height: (config.totalHours * config.cellHeight!) + 80,
+                        height: (config.totalHours * config.cellHeight!),
                         width:
                             (config.totalDays * config.cellWidth!).toDouble(),
                         child: Stack(
@@ -327,7 +327,7 @@ class _TimePlannerState extends State<TimePlanner> {
               mainAxisSize: MainAxisSize.min,
               children: <Widget>[
                 SizedBox(
-                  height: (config.totalHours * config.cellHeight!) + 80,
+                  height: (config.totalHours * config.cellHeight!),
                   width: (config.totalDays * config.cellWidth!).toDouble(),
                   child: Stack(
                     children: <Widget>[
