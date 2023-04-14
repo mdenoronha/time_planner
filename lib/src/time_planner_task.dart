@@ -74,9 +74,7 @@ class TimePlannerTask extends StatelessWidget {
                     // (daysDuration! >= 1 ? daysDuration! : 1)),
                     decoration: BoxDecoration(
                         borderRadius: config.borderRadius, color: Colors.blue),
-                    child: Expanded(
-                      child: child ?? Container(),
-                    ),
+                    child: child ?? Container(),
                   ),
                 ),
               ],
