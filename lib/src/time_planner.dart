@@ -209,7 +209,7 @@ class _TimePlannerState extends State<TimePlanner> {
                     ),
                   ),
                 ),
-                Expanded(
+                Container(
                   child: buildMainBody(),
                 ),
               ],
