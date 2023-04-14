@@ -138,7 +138,85 @@ class _TimePlannerState extends State<TimePlanner> {
       timeVerticalController.jumpTo(mainVerticalController.offset);
     });
     return GestureDetector(
-      child: Container(color: style.backgroundColor, child: Container()),
+      child: Container(
+        color: style.backgroundColor,
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          mainAxisAlignment: MainAxisAlignment.start,
+          mainAxisSize: MainAxisSize.min,
+          children: <Widget>[
+            SingleChildScrollView(
+              controller: dayHorizontalController,
+              scrollDirection: Axis.horizontal,
+              physics: const NeverScrollableScrollPhysics(),
+              child: Row(
+                crossAxisAlignment: CrossAxisAlignment.center,
+                mainAxisAlignment: MainAxisAlignment.end,
+                mainAxisSize: MainAxisSize.min,
+                children: <Widget>[
+                  const SizedBox(
+                    width: 60,
+                  ),
+                  for (int i = 0; i < config.totalDays; i++) widget.headers[i],
+                ],
+              ),
+            ),
+            Container(
+              height: 1,
+              color: style.dividerColor ?? Theme.of(context).primaryColor,
+            ),
+            Row(
+              mainAxisSize: MainAxisSize.min,
+              children: <Widget>[
+                ScrollConfiguration(
+                  behavior: ScrollConfiguration.of(context)
+                      .copyWith(scrollbars: false),
+                  child: SingleChildScrollView(
+                    physics: const NeverScrollableScrollPhysics(),
+                    controller: timeVerticalController,
+                    child: Row(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      mainAxisSize: MainAxisSize.min,
+                      children: <Widget>[
+                        Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          mainAxisAlignment: MainAxisAlignment.start,
+                          mainAxisSize: MainAxisSize.min,
+                          children: <Widget>[
+                            //first number is start hour and second number is end hour
+                            for (int i = widget.startHour;
+                                i <= widget.endHour;
+                                i++)
+                              Padding(
+                                // we need some additional padding horizontally if we're showing in am/pm format
+                                padding: EdgeInsets.symmetric(
+                                  horizontal: !config.use24HourFormat ? 4 : 0,
+                                ),
+                                child: TimePlannerTime(
+                                  // this returns the formatted time string based on the use24HourFormat argument.
+                                  time: formattedTime(i),
+                                ),
+                              )
+                          ],
+                        ),
+                        Container(
+                          height: (config.totalHours * config.cellHeight!),
+                          width: 1,
+                          color: style.dividerColor ??
+                              Theme.of(context).primaryColor,
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
+                Container(
+                  child: buildMainBody(),
+                ),
+              ],
+            ),
+          ],
+        ),
+      ),
     );
   }
 
