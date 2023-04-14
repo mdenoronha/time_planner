@@ -165,56 +165,54 @@ class _TimePlannerState extends State<TimePlanner> {
               height: 1,
               color: style.dividerColor ?? Theme.of(context).primaryColor,
             ),
-            Expanded(
-              child: Row(
-                mainAxisSize: MainAxisSize.min,
-                children: <Widget>[
-                  ScrollConfiguration(
-                    behavior: ScrollConfiguration.of(context)
-                        .copyWith(scrollbars: false),
-                    child: SingleChildScrollView(
-                      physics: const NeverScrollableScrollPhysics(),
-                      controller: timeVerticalController,
-                      child: Row(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        mainAxisSize: MainAxisSize.min,
-                        children: <Widget>[
-                          Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            mainAxisAlignment: MainAxisAlignment.start,
-                            mainAxisSize: MainAxisSize.min,
-                            children: <Widget>[
-                              //first number is start hour and second number is end hour
-                              for (int i = widget.startHour;
-                                  i <= widget.endHour;
-                                  i++)
-                                Padding(
-                                  // we need some additional padding horizontally if we're showing in am/pm format
-                                  padding: EdgeInsets.symmetric(
-                                    horizontal: !config.use24HourFormat ? 4 : 0,
-                                  ),
-                                  child: TimePlannerTime(
-                                    // this returns the formatted time string based on the use24HourFormat argument.
-                                    time: formattedTime(i),
-                                  ),
-                                )
-                            ],
-                          ),
-                          Container(
-                            height: (config.totalHours * config.cellHeight!),
-                            width: 1,
-                            color: style.dividerColor ??
-                                Theme.of(context).primaryColor,
-                          ),
-                        ],
-                      ),
+            Row(
+              mainAxisSize: MainAxisSize.min,
+              children: <Widget>[
+                ScrollConfiguration(
+                  behavior: ScrollConfiguration.of(context)
+                      .copyWith(scrollbars: false),
+                  child: SingleChildScrollView(
+                    physics: const NeverScrollableScrollPhysics(),
+                    controller: timeVerticalController,
+                    child: Row(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      mainAxisSize: MainAxisSize.min,
+                      children: <Widget>[
+                        Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          mainAxisAlignment: MainAxisAlignment.start,
+                          mainAxisSize: MainAxisSize.min,
+                          children: <Widget>[
+                            //first number is start hour and second number is end hour
+                            for (int i = widget.startHour;
+                                i <= widget.endHour;
+                                i++)
+                              Padding(
+                                // we need some additional padding horizontally if we're showing in am/pm format
+                                padding: EdgeInsets.symmetric(
+                                  horizontal: !config.use24HourFormat ? 4 : 0,
+                                ),
+                                child: TimePlannerTime(
+                                  // this returns the formatted time string based on the use24HourFormat argument.
+                                  time: formattedTime(i),
+                                ),
+                              )
+                          ],
+                        ),
+                        Container(
+                          height: (config.totalHours * config.cellHeight!),
+                          width: 1,
+                          color: style.dividerColor ??
+                              Theme.of(context).primaryColor,
+                        ),
+                      ],
                     ),
                   ),
-                  Expanded(
-                    child: buildMainBody(),
-                  ),
-                ],
-              ),
+                ),
+                Expanded(
+                  child: buildMainBody(),
+                ),
+              ],
             ),
           ],
         ),

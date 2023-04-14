@@ -88,106 +88,104 @@ class _MyHomePageState extends State<MyHomePage> {
         title: Text(widget.title),
         centerTitle: true,
       ),
-      body: Center(
-        child: TimePlanner(
-          startHour: 6,
-          endHour: 23,
-          use24HourFormat: false,
-          style: TimePlannerStyle(
-            // cellHeight: 60,
-            // cellWidth: 60,
-            showScrollBar: true,
-            interstitialEvenColor: Colors.grey[50],
-            interstitialOddColor: Colors.grey[200],
-          ),
-          headers: const [
-            TimePlannerTitle(
-              date: "3/10/2021",
-              title: "sunday",
-            ),
-            TimePlannerTitle(
-              date: "3/11/2021",
-              title: "monday",
-            ),
-            TimePlannerTitle(
-              date: "3/12/2021",
-              title: "tuesday",
-            ),
-            TimePlannerTitle(
-              date: "3/13/2021",
-              title: "wednesday",
-            ),
-            TimePlannerTitle(
-              date: "3/14/2021",
-              title: "thursday",
-            ),
-            TimePlannerTitle(
-              date: "3/15/2021",
-              title: "friday",
-            ),
-            TimePlannerTitle(
-              date: "3/16/2021",
-              title: "saturday",
-            ),
-            TimePlannerTitle(
-              date: "3/17/2021",
-              title: "sunday",
-            ),
-            TimePlannerTitle(
-              date: "3/18/2021",
-              title: "monday",
-            ),
-            TimePlannerTitle(
-              date: "3/19/2021",
-              title: "tuesday",
-            ),
-            TimePlannerTitle(
-              date: "3/20/2021",
-              title: "wednesday",
-            ),
-            TimePlannerTitle(
-              date: "3/21/2021",
-              title: "thursday",
-            ),
-            TimePlannerTitle(
-              date: "3/22/2021",
-              title: "friday",
-            ),
-            TimePlannerTitle(
-              date: "3/23/2021",
-              title: "saturday",
-            ),
-            TimePlannerTitle(
-              date: "3/24/2021",
-              title: "tuesday",
-            ),
-            TimePlannerTitle(
-              date: "3/25/2021",
-              title: "wednesday",
-            ),
-            TimePlannerTitle(
-              date: "3/26/2021",
-              title: "thursday",
-            ),
-            TimePlannerTitle(
-              date: "3/27/2021",
-              title: "friday",
-            ),
-            TimePlannerTitle(
-              date: "3/28/2021",
-              title: "saturday",
-            ),
-            TimePlannerTitle(
-              date: "3/29/2021",
-              title: "friday",
-            ),
-            TimePlannerTitle(
-              date: "3/30/2021",
-              title: "saturday",
-            ),
-          ],
-          tasks: tasks,
+      body: TimePlanner(
+        startHour: 6,
+        endHour: 23,
+        use24HourFormat: false,
+        style: TimePlannerStyle(
+          // cellHeight: 60,
+          // cellWidth: 60,
+          showScrollBar: true,
+          interstitialEvenColor: Colors.grey[50],
+          interstitialOddColor: Colors.grey[200],
         ),
+        headers: const [
+          TimePlannerTitle(
+            date: "3/10/2021",
+            title: "sunday",
+          ),
+          TimePlannerTitle(
+            date: "3/11/2021",
+            title: "monday",
+          ),
+          TimePlannerTitle(
+            date: "3/12/2021",
+            title: "tuesday",
+          ),
+          TimePlannerTitle(
+            date: "3/13/2021",
+            title: "wednesday",
+          ),
+          TimePlannerTitle(
+            date: "3/14/2021",
+            title: "thursday",
+          ),
+          TimePlannerTitle(
+            date: "3/15/2021",
+            title: "friday",
+          ),
+          TimePlannerTitle(
+            date: "3/16/2021",
+            title: "saturday",
+          ),
+          TimePlannerTitle(
+            date: "3/17/2021",
+            title: "sunday",
+          ),
+          TimePlannerTitle(
+            date: "3/18/2021",
+            title: "monday",
+          ),
+          TimePlannerTitle(
+            date: "3/19/2021",
+            title: "tuesday",
+          ),
+          TimePlannerTitle(
+            date: "3/20/2021",
+            title: "wednesday",
+          ),
+          TimePlannerTitle(
+            date: "3/21/2021",
+            title: "thursday",
+          ),
+          TimePlannerTitle(
+            date: "3/22/2021",
+            title: "friday",
+          ),
+          TimePlannerTitle(
+            date: "3/23/2021",
+            title: "saturday",
+          ),
+          TimePlannerTitle(
+            date: "3/24/2021",
+            title: "tuesday",
+          ),
+          TimePlannerTitle(
+            date: "3/25/2021",
+            title: "wednesday",
+          ),
+          TimePlannerTitle(
+            date: "3/26/2021",
+            title: "thursday",
+          ),
+          TimePlannerTitle(
+            date: "3/27/2021",
+            title: "friday",
+          ),
+          TimePlannerTitle(
+            date: "3/28/2021",
+            title: "saturday",
+          ),
+          TimePlannerTitle(
+            date: "3/29/2021",
+            title: "friday",
+          ),
+          TimePlannerTitle(
+            date: "3/30/2021",
+            title: "saturday",
+          ),
+        ],
+        tasks: tasks,
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: () => _addObject(context),
